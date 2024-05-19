@@ -1,11 +1,14 @@
 package br.com.challenge.newssenderapi.domain;
 
+import br.com.challenge.newssenderapi.dto.request.NewsRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 @Entity
 @Data
@@ -19,12 +22,19 @@ public class News {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Titúlo é obrigatório para o cadastro de uma notícia")
+    @NotNull
     private String title;
 
-    @NotBlank(message = "Descrição é obrigatória para o cadastro de uma notícia")
+    @NotBlank
     private String description;
 
     private String link;
 
+    public static News of(NewsRequest request){
+        var news = new News();
+
+        BeanUtils.copyProperties(request, news);
+
+        return news;
+    }
 }
