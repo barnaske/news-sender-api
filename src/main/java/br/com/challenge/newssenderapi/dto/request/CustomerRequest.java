@@ -1,5 +1,6 @@
 package br.com.challenge.newssenderapi.dto.request;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class CustomerRequest {
     private String name;
 
     @NotBlank(message = "O campo email é obrigatório para cadastro de um cliente")
+    @Email(message = "Email em formato incorreto.")
     private String email;
 
     private LocalDate birthdate;

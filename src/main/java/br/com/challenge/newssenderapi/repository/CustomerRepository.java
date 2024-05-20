@@ -15,4 +15,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
     Page<Customer> findAll(Pageable pageable);
 
+    Customer findByEmail(String email);
+
 }
