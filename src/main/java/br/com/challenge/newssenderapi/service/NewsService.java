@@ -6,6 +6,8 @@ import br.com.challenge.newssenderapi.dto.request.NewsRequest;
 import br.com.challenge.newssenderapi.dto.response.NewsResponse;
 import br.com.challenge.newssenderapi.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,5 +20,25 @@ public class NewsService {
         var news = newsRepository.save(News.of(request));
 
         return NewsResponse.of(news);
+    }
+
+    public Page<News> listAll(Pageable pageable) throws Exception {
+        var news = newsRepository.findAll(pageable);
+
+        if (news.isEmpty())
+            throw new ValidationException("Não há notícias criadas.");
+
+        return news;
+    }
+
+    public void deleteNews(Long id) throws Exception {
+        News deleting = newsRepository.findById(id);
+
+        if (deleting == null)
+            throw new ValidationException("Nenhum notícia encontrada com o identificador informado");
+
+        var newsIntId = id.intValue();
+
+        newsRepository.deleteById(newsIntId);
     }
 }
