@@ -9,6 +9,20 @@ server:
 spring:
   application:
     name: news-sender-api
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: augustomailsenderapi@gmail.com
+    password: uluc gfjk jkwo pysa
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+      protocol: smtp
+      test-connection: false
 
   datasource:
     driver-class-name: org.postgresql.Driver
