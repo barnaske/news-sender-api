@@ -4,10 +4,7 @@ import br.com.challenge.newssenderapi.dto.request.NewsRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 @Entity
@@ -29,6 +26,9 @@ public class News {
     private String description;
 
     private String link;
+
+    @NotNull
+    private boolean sent;
 
     public static News of(NewsRequest request){
         var news = new News();

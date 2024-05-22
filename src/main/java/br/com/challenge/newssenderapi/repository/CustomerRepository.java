@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
@@ -14,6 +16,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     Customer findById(Long id);
 
     Page<Customer> findAll(Pageable pageable);
+
+    List<Customer> findAll();
 
     Customer findByEmail(String email);
 

@@ -1,6 +1,7 @@
 package br.com.challenge.newssenderapi.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -13,4 +14,7 @@ public class NewsRequest {
     private String description;
 
     private String link;
+
+    @NotNull
+    private boolean sent = false;
 }
