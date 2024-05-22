@@ -23,6 +23,9 @@ spring:
             enable: true
       protocol: smtp
       test-connection: false
+  task:
+    scheduling:
+      cron: 0 0 8 * * ?
 
   datasource:
     driver-class-name: org.postgresql.Driver
