@@ -17,6 +17,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -35,7 +36,7 @@ public class CustomerController {
 
     @GetMapping("/findAll")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Customer> listSubscribed(@PageableDefault(sort = "name") Pageable pageable) throws Exception {
+    public List<Customer> listSubscribed(@PageableDefault(sort = "name") Pageable pageable) throws Exception {
         return customerService.listSubscribed(pageable);
     }
 

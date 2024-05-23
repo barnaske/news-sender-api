@@ -14,7 +14,7 @@ public interface NewsRepository extends CrudRepository<News, Integer> {
 
     News findById(Long id);
 
-    Page<News> findAll(Pageable pageable);
+    List<News> findAll(Pageable pageable);
 
     List<News> findBySentFalse();
 

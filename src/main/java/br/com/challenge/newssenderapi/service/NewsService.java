@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class NewsService {
 
@@ -22,7 +24,7 @@ public class NewsService {
         return NewsResponse.of(news);
     }
 
-    public Page<News> listAll(Pageable pageable) throws Exception {
+    public List<News> listAll(Pageable pageable) throws Exception {
         var news = newsRepository.findAll(pageable);
 
         if (news.isEmpty())
@@ -35,7 +37,7 @@ public class NewsService {
         News deleting = newsRepository.findById(id);
 
         if (deleting == null)
-            throw new ValidationException("Nenhum notícia encontrada com o identificador informado");
+            throw new ValidationException(String.format("Nenhum notícia encontrada com o identificador informado: '%s'", id));
 
         var newsIntId = id.intValue();
 

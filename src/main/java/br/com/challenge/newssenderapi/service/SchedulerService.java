@@ -14,7 +14,7 @@ public class SchedulerService {
 
 
 //    @Scheduled(fixedDelay = 60000) -- Para testes
-    @Scheduled(cron = "${spring.task.scheduling.cron")
+    @Scheduled(cron = "${spring.task.scheduling.cron}")
     public void scanAndSendNewsletter(){
         mailService.sendNewsletter();
     }

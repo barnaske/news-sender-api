@@ -51,9 +51,6 @@ public class MailSenderService {
         if (newsToSend.isEmpty())
             throw new ValidationException("Não há novas notícias para enviar");
 
-        log.info(newsToSend.toString());
-        log.info(customers.toString());
-
         for (Customer customer : customers) {
 
             if (customer.getBirthdate() != null) {
@@ -91,11 +88,6 @@ public class MailSenderService {
                     }
                     news.setSent(true);
                     newsRepository.save(news);
-
-                    var updatedNews = newsRepository.findById(news.getId().longValue());
-
-                    log.info("Current news state: ID= " + news.getId() + "isSent: " + news.isSent());
-                    log.info("Dado retornado do banco: " + String.valueOf(updatedNews));
                 }
 
                 messageHtmlContent = messageHtmlContent +

@@ -30,21 +30,21 @@ public class CustomerService {
         return CustomerResponse.of(customer);
     }
 
-    public Page<Customer> listSubscribed(Pageable pageable) throws Exception {
+    public List<Customer> listSubscribed(Pageable pageable) throws Exception {
 
         var subscribed = customerRepository.findAll(pageable);
 
         if (subscribed.isEmpty())
             throw new ValidationException("Não há clientes inscritos na newsletter.");
 
-        return subscribed ;
+        return subscribed;
     }
 
     public UnsubscribeCustomerResponse unsubscribe(String email) throws Exception{
         Customer unsub = customerRepository.findByEmail(email);
 
         if (unsub == null)
-            throw new ValidationException("Nenhum cliente cadastrado com o email informado");
+            throw new ValidationException(String.format("Nenhum cliente cadastrado com o email informado '%s'", email));
 
         customerRepository.delete(unsub);
 

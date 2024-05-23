@@ -15,7 +15,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
     Customer findById(Long id);
 
-    Page<Customer> findAll(Pageable pageable);
+    List<Customer> findAll(Pageable pageable);
 
     List<Customer> findAll();
 

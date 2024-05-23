@@ -15,6 +15,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,7 +34,7 @@ public class NewsController {
 
     @GetMapping("/findAll")
     @ResponseStatus(HttpStatus.OK)
-    public Page<News> listAll(@PageableDefault(sort ="title") Pageable pageable)throws Exception {
+    public List<News> listAll(@PageableDefault(sort ="title") Pageable pageable)throws Exception {
         return newsService.listAll(pageable);
     }
 
